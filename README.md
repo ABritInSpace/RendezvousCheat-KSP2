@@ -1,3 +1,5 @@
 # Rendezvous Cheat
 
-A cheat menu for vessel rendezvous in KSP 2 - activate using ALT+R.
+A cheat menu for vessel rendezvous in KSP 2, using the [Space Warp mod loader](https://github.com/X606/SpaceWarp) - activate using ALT+R in flight.
+
+To install, simply extract the "RendezvousCheat" folder into your Mods folder, after patching with Space Warp.
