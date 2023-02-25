@@ -1,0 +1,14 @@
+{
+  "mod_id": "Rendezvous",
+  "name": "Rendezvous",
+  "author": "ABritInSpace",
+  "description": "GUI Utility for teleporting the active vessel to a proximity around a target vessel.",
+  "source": "",
+  "version": "",
+  "dependencies": [
+  ],
+  "ksp2_version": {
+    "min": "...",
+    "max": "... (can be * for no max version)"
+  }
+}
