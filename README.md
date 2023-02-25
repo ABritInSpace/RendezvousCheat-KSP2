@@ -5,4 +5,4 @@ A cheat menu for vessel rendezvous in KSP 2, using the [Space Warp mod loader](h
 To install, simply extract the "RendezvousCheat" folder into your Mods folder, after patching with Space Warp (v0.0.2).
 
 # Relevant Attribution (GUI Code)
-GUI Layout, code and structure modified directly from [Lawrence / Halbann's](https://github.com/Halbann) [LazyOrbit](https://github.com/Halbann/LazyOrbit) source. See comments in code for relevant sections. Licensed under CC-BY-4.0.
+GUI Layout, code and structure modified directly from [Lawrence / Halbann's](https://github.com/Halbann) [LazyOrbit](https://github.com/Halbann/LazyOrbit) source. See comments in code for relevant sections. Licensed under CC-BY-SA-4.0.
