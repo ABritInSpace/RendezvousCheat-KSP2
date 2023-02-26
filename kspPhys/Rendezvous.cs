@@ -10,6 +10,7 @@ using SpaceWarp.API;
 using System.Runtime.CompilerServices;
 using KSP.Logging;
 using KSP.Sim;
+using SpaceWarp.API.Mods;
 
 //WHERE INDICATED BY **1**, RELEVANT SECTIONS HAVE BEEN MODIFIED FROM LazyOrbit.
 //SEE README FOR DETAILS
@@ -61,7 +62,7 @@ namespace kspPhys
                     draw,
                     "Rendezvous Cheat",
                     GUILayout.Height(0),
-                    GUILayout.Width(300));
+                    GUILayout.Width(150));
             }
             //
         }
@@ -93,10 +94,19 @@ namespace kspPhys
             //
             foreach (VesselComponent v in vessels)
             {
-                if (GUILayout.Button(v.Name))
+                if (v.Guid.ToString() != game.ViewController.GetActiveVehicle(true)?.Guid.ToString())
                 {
-                    target = v;
-                    DoRendz();
+                    if (GUILayout.Button(v.Name))
+                    {
+                        target = v;
+                        DoRendz();
+                    }
+                }
+                else
+                {
+                    GUIStyle invalid = new GUIStyle(GUI.skin.button);
+                    invalid.normal.textColor = Color.red;
+                    GUILayout.Button(v.Name, invalid);
                 }
             }
             //**1**
