@@ -18,13 +18,14 @@ using KSP.Sim;
 using SpaceWarp.API.Mods;
 using BepInEx;
 using SpaceWarp;
+using KSP.UI.Binding;
 
 //WHERE INDICATED BY **1**, RELEVANT SECTIONS HAVE BEEN MODIFIED FROM LazyOrbit.
 //SEE README FOR DETAILS
 
-namespace kspPhys
+namespace RendezvousCheat
 {
-    [BepInPlugin("com.github.ABritInSpace.StageInfo", "StagInfoMod", "0.1.3")]
+    [BepInPlugin("com.github.ABritInSpace.RendezvousCheat", "RendezvousCheat", "0.1.3")]
     [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
     public class RendezvousCheat : BaseSpaceWarpPlugin
     {
@@ -36,40 +37,44 @@ namespace kspPhys
         public bool selecting = false;
         public VesselComponent target;
         public Vector2 scrollpos;
-        public bool doDraw = false;
+        private bool doDraw = false;
 
-        public void onInitialize()
+        public override void OnInitialized()
         {
-            //**1**
-            if (lod)
-                Destroy(this);
-            lod = true;
-            //
             base.OnInitialized();
             Instance = this;
+
+            window = new Rect((Screen.width * 0.85f) - (75), (Screen.height / 2) - (300), 0, 0);
+            
+            Appbar.RegisterAppButton(
+                "RendezvousCheat",
+                "BTN-RCBtn",
+                AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+                ToggleButton
+            );
+
+            Logger.LogInfo($"{SpaceWarpMetadata.ModID}/images/icon.png");
+            Logger.LogInfo("RegisterButton");
+        }
+        private void ToggleButton(bool toggle)
+        {
+            doDraw = toggle;
+            GameObject.Find("BTN-RCBtn")?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(toggle);
+
         }
         void Awake()
         {
-            //**1**
-            window = new Rect((Screen.width * 0.85f) - (75), (Screen.height / 2) - (300), 0, 0);
-            //
-        }
-        void Update()
-        {
-            //**1**
-            if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.R))
-            {
-                doDraw = !doDraw;
-            }
-            //
-        }
-
+            return;
+        }        
         void OnGUI()
         {
+            //GUI.skin = Skins.ConsoleSkin;
             //**1**
             if (doDraw)
             {
-                window = GUILayout.Window(GUIUtility.GetControlID(FocusType.Passive),
+                
+                window = GUILayout.Window(
+                    GUIUtility.GetControlID(FocusType.Passive),
                     window,
                     draw,
                     "Rendezvous Cheat",
