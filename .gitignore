@@ -364,3 +364,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+kspPhys/external_dlls
+.vs
+kspPhys/bin/*
+kspPhys/obj
+external_dlls/*
